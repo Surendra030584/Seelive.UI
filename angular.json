@@ -1,0 +1,157 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "seelive": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/seelive",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/assets/plugins/bootstrap/css/bootstrap.min.css",
+              "src/assets/css/style.css",
+              "src/assets/switcher/css/switcher.css",
+              "src/assets/switcher/demo.css",
+              "src/assets/plugins/scroll-bar/jquery.mCustomScrollbar.css",
+              "src/assets/plugins/toggle-sidebar/full-sidemenu.css",
+              "src/assets/plugins/bootstrap-daterangepicker/daterangepicker.css",
+              "src/assets/plugins/sidebar/sidebar.css",
+             
+              "src/assets/plugins/iconfonts/icons.css",
+              "src/assets/fonts/fonts/font-awesome.min.css"
+            ],
+            "scripts": [
+              "src/assets/js/vendors/jquery-3.2.1.min.js",
+              "src/assets/plugins/bootstrap/popper.min.js",
+              "src/assets/plugins/bootstrap/js/bootstrap.min.js",
+              "src/assets/js/vendors/jquery.sparkline.min.js",
+              "src/assets/js/vendors/circle-progress.min.js",
+              "src/assets/plugins/moment/moment.min.js",
+              "src/assets/plugins/bootstrap-daterangepicker/daterangepicker.js",
+              "src/assets/plugins/toggle-sidebar/sidemenu.js",
+              "src/assets/plugins/accordion1/js/easyResponsiveTabs.js",
+              "src/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js",
+              "src/assets/plugins/owl-carousel/owl.carousel.js",
+              "src/assets/plugins/owl-carousel/owl-main.js",
+              "src/assets/plugins/sidebar/sidebar.js",
+              "src/assets/plugins/counters/jquery.missofis-countdown.js",
+              "src/assets/plugins/counters/counter.js",
+              "src/assets/plugins/morris/raphael-min.js",
+              "src/assets/plugins/morris/morris.js",
+              "src/assets/js/custom.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "seelive:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "seelive:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "seelive:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "seelive:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "seelive:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "seelive",
+  "cli": {
+    "analytics": "8425ea72-dbe7-4b25-a95b-a50da21c2dcd"
+  }
+}
